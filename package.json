@@ -36,9 +36,5 @@
     "tabWidth": 2,
     "semi": true,
     "singleQuote": false
-  },
-  "overrides": {
-    "esbuild": "$esbuild",
-    "@esbuild/aix-ppc64": "npm:empty-package"
   }
 }
