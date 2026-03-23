@@ -37,10 +37,5 @@
     "semi": true,
     "singleQuote": false
   },
-  "optionalDependencies": {
-    "@esbuild/linux-x64": "0.27.4"
-  },
-  "libc": [
-    "glibc"
-  ]
+  "optionalDependencies": {}
 }
