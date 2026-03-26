@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -36,8 +39,11 @@ jobs:
       - name: Use gcloud CLI
         run: gcloud info
 
-      - name: Build to Registry
+      - name: Build Image to Registry
         run: gcloud builds submit --tag europe-west3-docker.pkg.dev/bamboo-antler-491206-h0/notely-ar-repo/notely:latest .
 
-      - name: Deploy to Cloud Run
+      - name: Run migration
+        run: npm run db:migrate
+
+      - name: Deploy Container to Cloud Run
         run: gcloud run deploy notely --image europe-west3-docker.pkg.dev/bamboo-antler-491206-h0/notely-ar-repo/notely:latest --region europe-west1 --allow-unauthenticated --project bamboo-antler-491206-h0 --max-instances=4
