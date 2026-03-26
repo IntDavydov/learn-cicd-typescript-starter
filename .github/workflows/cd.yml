@@ -38,3 +38,6 @@ jobs:
 
       - name: Build to Registry
         run: gcloud builds submit --tag europe-west3-docker.pkg.dev/bamboo-antler-491206-h0/notely-ar-repo/notely:latest .
+
+      - name: Deploy to Cloud Run
+        run: gcloud run deploy notely --image europe-west3-docker.pkg.dev/bamboo-antler-491206-h0/notely-ar-repo/notely:latest --region europe-west1 --allow-unauthenticated --project bamboo-antler-491206-h0 --max-instances=4
